@@ -13,15 +13,31 @@
   layer3: {
     label: Модел
   }
-  "Start program": {
+  "Стартиране на приложението": {
     user.start -> layer1.start: Показване на библютеката\n
     layer1.start -> layer2.start: Извличане на книгите от библиотеката\n
-    layer2.start -> layer3.start: Извличане на мета данни от базата дани на всички книги
+    layer2.start -> layer3.start: Извличане на мета данни от\nбазата дани на всички книги
     layer3.start -> layer2.start
-    layer2.start.file_check -> layer2.start.file_check: Проверка на за наличност на файловете\n
+    layer2.start.file_check -> layer2.start.file_check: Проверка на за\nналичност на файловете\n
     layer2.start -> layer1.start
-    layer1.start.generate_view -> layer1.start.generate_view: Зареждане на върнатите данни в изгледа\n
+    layer1.start.generate_view -> layer1.start.generate_view: Зареждане на върнатите\nданни в изгледа\n
     layer1.start -> user.start: Представяне на библиотеката\n
+  }
+  "Отваряне на нова книга": {
+    user.open -> layer1.open: Потребителя избира опция "Отвори"
+    layer1.open -> layer1.open: Отваря се прозорец с файлове мениджър
+    layer1.open -> user.open: Визуализира се файловият мениджър
+    user.open -> layer1.open: Потребителя избира файл
+    layer1.open -> layer2.open: Изпраща се локацията на файла
+    layer2.open.read_file -> layer2.open.read_file: Прочитаме мета данни на файла
+    layer2.open.record -> layer3.open.record: Запис на данни в базата
+    layer3.open.record.store_record -> layer3.open.record.store_record: Генерира се нов\nфайл за отворената книга
+    layer3.open.record.store_record -> layer3.open.record.store_record: Записват се\nизвлечените данни
+    layer3.open -> layer2.open: Успешно записване\nна данните
+    layer2.open -> layer3.open: Извличане на настройк\nпо подразбиране
+    layer3.open -> layer2.open
+    layer2.open -> layer1.open: Данни от файла. 
+    layer1.open -> user.open: Презентира се на потребителя\nизгледа за четене с настройки по подразбиране.
   }
 }
 
