@@ -15,13 +15,13 @@
   }
   "Start program": {
     user.start -> layer1.start: Показване на библютеката\n
-    layer1.start -> layer2.start: Get library\n
-    layer2.start -> layer3.start: Get books from library with \n progress and settngs
-    layer3.start -> layer2.start: Return library data\n
-    layer2.start.file_check -> layer2.start.file_check: Check files if they are present\n
-    layer2.start -> layer1.start: Return library\n
-    layer1.start.generate_view -> layer1.start.generate_view: Handle returned context\n
-    layer1.start -> user.start: Present to user library\n
+    layer1.start -> layer2.start: Извличане на книгите от библиотеката\n
+    layer2.start -> layer3.start: Извличане на мета данни от базата дани на всички книги
+    layer3.start -> layer2.start
+    layer2.start.file_check -> layer2.start.file_check: Проверка на за наличност на файловете\n
+    layer2.start -> layer1.start
+    layer1.start.generate_view -> layer1.start.generate_view: Зареждане на върнатите данни в изгледа\n
+    layer1.start -> user.start: Представяне на библиотеката\n
   }
 }
 
