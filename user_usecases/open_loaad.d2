@@ -1,0 +1,27 @@
+"User Use cases": {
+  shape: sequence_diagram
+  user: {
+    label: OciReader User
+    shape: person
+  }
+  layer1: {
+    label: Изглед
+  }
+  layer2: {
+    label: Презентатор
+  }
+  layer3: {
+    label: Модел
+  }
+  "Start program": {
+    user.start -> layer1.start: Показване на библютеката\n
+    layer1.start -> layer2.start: Get library\n
+    layer2.start -> layer3.start: Get books from library with \n progress and settngs
+    layer3.start -> layer2.start: Return library data\n
+    layer2.start.file_check -> layer2.start.file_check: Check files if they are present\n
+    layer2.start -> layer1.start: Return library\n
+    layer1.start.generate_view -> layer1.start.generate_view: Handle returned context\n
+    layer1.start -> user.start: Present to user library\n
+  }
+}
+
